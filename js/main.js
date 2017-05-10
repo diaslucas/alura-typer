@@ -8,6 +8,7 @@ $(
     inicializaCronometro();
     validaFrase();
     $("#botao-reiniciar").click(reiniciaJogo);
+    atualizaPlacar();
 });
 
 function atualizaTamanhoFrase(){
