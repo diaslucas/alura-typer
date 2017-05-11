@@ -4,7 +4,7 @@ $("#botao-sync").click(sincronizaPlacar);
 
 function inserePlacar(){
     var corpoTabela = $(".placar").find("tbody");
-    var usuario = "Lucas";
+    var usuario = $("#usuarios").val();
     var numPalavras = $("#contador-palavras").text();
     var botaoRemover = "<a href='#' class='botao-remover'><i class='small material-icons'>delete</i></a>"
 
@@ -89,7 +89,15 @@ function sincronizaPlacar(){
     
     $.post("http://localhost:3000/placar", dados, function(){
         console.log("Saved");
-    });
+        $(".tooltip").tooltipster("open").tooltipster("content","The score has been saved!")
+    }).fail(function(){
+         $(".tooltip").tooltipster("open").tooltipster("content","The score couldn't be saved!");
+
+    }).always(function(){
+         setTimeout(function(){
+            $(".tooltip").tooltipster("close");
+        }, 2000);
+    })
 }
 
 function atualizaPlacar(){
